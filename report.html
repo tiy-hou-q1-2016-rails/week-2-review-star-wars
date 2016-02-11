@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Age Group', 'Average Dislike'],
+          ['18-29',  2],
+          ['30-44',  2],
+          ['45-60',  2],
+          ['> 60',  3]
+        ]);
+
+        var options = {
+          title: 'Who likes (if any) Jar Jar',
+          curveType: 'function',
+          legend: { position: 'bottom' }
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+
+        chart.draw(data, options);
+      }
+    </script>
+
+
+  </head>
+  <body>
+    Who likes (if any) Jar Jar
+
+    <p>
+      There were 1186 responses.
+    </p>
+    <p>Age Groups: ["18-29", nil, "30-44", "> 60", "45-60"]</p>
+    <p>Possible Answers: ["Very favorably", nil, "Unfamiliar (N/A)", "Very unfavorably", "Somewhat favorably", "Somewhat unfavorably", "Neither favorably nor unfavorably (neutral)"]</p>
+
+    <p>
+      <em>Higher the response, the more the age group liked Jar Jar</em>
+    </p>
+
+    <div id="curve_chart" style="width: 900px; height: 500px"></div>
+
+  </body>
+</html>

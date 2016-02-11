@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Age Group', 'Average Dislike'],
+          ['18-29',  <%= avg_eighteen %>],
+          ['30-44',  <%= avg_thirty %>],
+          ['45-60',  <%= avg_fifty %>],
+          ['> 60',  <%= avg_sixty %>]
+        ]);
+
+        var options = {
+          title: '<%= page_title %>',
+          curveType: 'function',
+          legend: { position: 'bottom' }
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+
+        chart.draw(data, options);
+      }
+    </script>
+
+
+  </head>
+  <body>
+    <%= page_title %>
+
+    <p>
+      There were <%= responses.count %> responses.
+    </p>
+    <p>Age Groups: <%= age_groups %></p>
+    <p>Possible Answers: <%= favorable %></p>
+
+    <p>
+      <em>Higher the response, the more the age group liked Jar Jar</em>
+    </p>
+
+    <div id="curve_chart" style="width: 900px; height: 500px"></div>
+
+  </body>
+</html>
